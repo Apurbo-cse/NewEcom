@@ -34,6 +34,10 @@
         </div>
         <!-- /.content-wrapper -->
 
+        <!-- Modal -->
+        @include('backend.others.modal')
+        <!-- End Modal -->
+
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
