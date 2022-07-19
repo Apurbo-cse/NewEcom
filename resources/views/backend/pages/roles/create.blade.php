@@ -1,62 +1,37 @@
-<form id="create-form" enctype="multipart/form-data">
+<form id="create-form" enctype="multipart/form-data" action="{{ route('roles.store') }}" method="POST">
     @csrf
     <div class="row form-group">
-        <div class="col-md-6">
-              <label for="first_name">First Name</label>
-              <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter Admin First Name">
+        <div class="col-md-12">
+              <label for="name">Role Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Enter Role Name">
          </div>
-         <div class="col-md-6">
+         {{-- <div class="col-md-6">
               <label for="last_name">Last Name</label>
               <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Admin Last Name">
-        </div>
+        </div> --}}
      </div>
 
     <div class="form-group row">
-        <div class="col-md-6">
-          <label for="phone">Phone</label>
-          <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Admin Phone">
-        </div>
-        <div class="col-md-6">
-             <label for="email">Email</label>
-             <input type="text" class="form-control" id="email" name="email" placeholder="Enter Admin Email">
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-12">
-            <label for="name">Category</label>
-            <select name="category_id" id="category_id" class="form-control select2">
-                @foreach($categories as $data)
-                    <option value="{{ $data->id }}">{{ $data->name }}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
-    <span class="row">
-        <div class="form-group col-md-6">
-            <label for="icon">image</label>
-            <br><img id="icon1" onchange="validateMultipleImage('icon1')" alt="image" src="" height="180px" width="180px" onerror="this.onerror=null;this.src='{{ asset(get_static_option('no_image')) }}';" required/>
-
-            <br><br>
-
-            <input type="file" class="mt-2" id="image" name="image" onchange="document.getElementById('icon1').src = window.URL.createObjectURL(this.files[0]); show(this)" accept=".jfif,.jpg,.jpeg,.png,.gif" required>
-
+        <div class="col-md-12">
+          <label for="phone">Permissions</label>
+          @foreach ($permissions as $permission)
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="permission[]" id="checkPermission{{ $permission->id }}" value="{{ $permission->name}}">
+            <label class="form-check-label" for="checkPermission{{ $permission->id }}">{{ $permission->name }}</label>
           </div>
-          <div class="form-group col-md-6">
-              <label for="image">Cover</label>
-              <br><img id="image1" onchange="validateMultipleImage('image1')" alt="icon" src="" height="180px" width="180px" onerror="this.onerror=null;this.src='{{ asset(get_static_option('no_image')) }}';" required/>
-
-              <br><br>
-
-              <input type="file" class="mt-2" id="cover" name="cover" onchange="document.getElementById('image1').src = window.URL.createObjectURL(this.files[0]); show(this)" accept=".jfif,.jpg,.jpeg,.png,.gif" required>
+          @endforeach
 
         </div>
-    </span>
 
-    <button type="submit"  class="btn btn-primary" id="btnSaveAdmin"><i class="fa fa-save"></i>&nbsp; Save Admin</button>
+    </div>
+
+
+
+    <button type="submit"  class="btn btn-primary" id="btnSaveAdmin"><i class="fa fa-save"></i>&nbsp; Save</button>
 
   </form>
 
-  <script>
+  {{-- <script>
     $(document).on('click','#btnSaveAdmin',function (event) {
         event.preventDefault();
         var form = $('#create-form')[0];
@@ -112,4 +87,4 @@
         });
 
     });
- </script>
+ </script> --}}
